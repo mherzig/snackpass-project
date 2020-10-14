@@ -1,0 +1,110 @@
+openapi: 3.0.0
+servers:
+  - url: "http://localhost:3000/v1"
+    description: Local API server
+info:
+  description: This is a sample API for the Snackpass demo project
+  version: "1.0.0"
+  title: Simple Snack API
+  contact:
+    email: work@maxherzig.com
+tags:
+  - name: consumer
+    description: Operations available to app consumers
+  - name: data
+    description: Manipulate data for demo purposes
+paths:
+  /healthcheck:
+    get:
+      tags:
+        - consumer
+      summary: used to check if API is can accept requests
+      description: Basic route, can be used for healthcheck purposes or for traffic manager/layer 7 load balancer to find fastest instance.
+      responses:
+        '200':
+          description: healthcheck is good
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+  /trending:
+    get:
+      tags:
+        - consumer
+      summary: used to get trending items
+      description: Gets a list of trending menu items from the last 48 hours.
+      parameters: 
+        - in: query
+          name: cursor
+          description: ID of the cursor to use. 
+          required: false
+          schema:
+            type: string
+            example: 'abc123'
+        - in: query
+          name: offset
+          description: number of items to skip before next item in the response. 
+          required: false
+          schema:
+            type: number
+            format: Int32
+            example: 20
+      responses:
+        '200':
+          description: here are your items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendingItemsResponse'
+        '400':
+          description: bad request
+  /reset:
+    post:
+      tags:
+        - data
+      summary: resets the sample data
+      description: if you want to start from scratch or with updated orders, this removes all orders from the database and creates new ones.
+      responses:
+        '204':
+          description: orders recreated
+        '500':
+          description: something went wrong, couldn't reset the tickets
+components:
+  schemas:
+    TrendingItemsResponse:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            required:
+              - uid
+              - name
+              - restaurant
+              - quantityPurchased
+              - lastPurchased
+            properties:
+              uid:
+                type: string
+                format: uuid
+                example: "1234"
+              name:
+                type: string
+                example: Fish tacos
+              restaurant:
+                type: string
+                example: The Taco Shack
+              quantityPurchased:
+                type: number
+                format: Int32
+                example: 10
+              lastPurchased:
+                type: string
+                format: date-time
+                example: '2020-10-01T02:03:04.567Z'
+        nextPage:
+          type: string
+          example: /v1/trending?cursor=abc123&offset=20
