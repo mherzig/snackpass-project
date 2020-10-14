@@ -2,6 +2,3 @@ node_modules
 
 frontend/dist
 frontend/.cache
-
-/data/*
-!/data/KEEP
