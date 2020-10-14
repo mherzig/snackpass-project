@@ -1,0 +1,33 @@
+{
+  "name": "spproj-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development parcel index.html",
+    "test": "jest"
+  },
+  "author": "work@maxherzig.com",
+  "license": "",
+  "devDependencies": {
+    "cross-env": "^7.0.2",
+    "parcel-bundler": "^1.12.4",
+    "prop-types": "^15.7.2",
+    "redux-devtools-extension": "^2.13.8",
+    "regenerator-runtime": "^0.13.7",
+    "sass": "^1.26.11",
+    "serve": "^11.3.2"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "dayjs": "^1.9.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "react-virtualized-auto-sizer": "^1.0.2",
+    "react-window": "^1.8.5",
+    "react-window-infinite-loader": "^1.0.5",
+    "redux": "^4.0.5",
+    "redux-saga": "^1.1.3"
+  }
+}

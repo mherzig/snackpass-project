@@ -1,0 +1,10 @@
+@import '../../assets/base';
+
+main {
+  height: calc(100% - 6em);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+  border: 1px solid $accent-color;
+  border-width: 0 1px;
+}

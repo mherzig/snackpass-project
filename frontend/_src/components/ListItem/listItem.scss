@@ -1,0 +1,55 @@
+@import '../../assets/base';
+
+.list-item {
+  box-sizing: border-box;
+  border-bottom: 1px solid lighten($accent-color, 30%);
+  background: url('../../assets/logo_round.png') no-repeat left;
+  background-size: contain;
+  padding: 0 10px 0 70px;
+
+  &:last-child {
+    border: none;
+  }
+
+  div {
+    padding-top: 9px;
+    white-space: nowrap;
+
+    span:first-child {
+      float: left;
+    }
+
+    span:last-child {
+      float: right;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .list-item {
+    padding-left: 110px;
+
+    div {
+      padding-top: 6px;
+
+      strong {
+        display: block;
+      }
+
+      em {
+        font-size: 90%;
+      }
+
+      span:first-child {
+        float: none;
+        display: block;
+      }
+
+      span:last-child {
+        float: none;
+        display: block;
+        padding-top: 3px;
+      }
+    }
+  }
+}
